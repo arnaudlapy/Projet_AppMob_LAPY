@@ -1,4 +1,4 @@
-package com.example.projetappmoblapy.presentation.main
+package com.example.projetappmoblapy.presentation.main.Status
 
 sealed class CreateStatus
 

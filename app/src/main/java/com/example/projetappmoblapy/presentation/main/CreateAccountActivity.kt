@@ -6,9 +6,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.projetappmoblapy.R
+import com.example.projetappmoblapy.presentation.main.Status.CreateError
+import com.example.projetappmoblapy.presentation.main.Status.CreateSucces
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_create.*
-import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
 
 class CreateAccountActivity:AppCompatActivity() {

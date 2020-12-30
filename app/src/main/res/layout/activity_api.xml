@@ -1,17 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background">
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent_layout"
+    android:layout_width="209dip"
+    android:layout_height="250dip"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentRight="true"
+    android:background="@color/background"
+    android:padding="16dip">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="150dip"
+        android:layout_height="150dip"
+        android:layout_marginRight="6dip"
+        android:src="@mipmap/ic_launcher" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bravo ça marche"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="153dp"
-        tools:layout_editor_absoluteY="356dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:id="@+id/firstLine"
+        android:layout_width="150dip"
+        android:layout_height="38dip"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_below="@id/icon"
+        android:layout_centerInParent="@id/icon"
+        android:ellipsize="marquee"
+        android:text="Album Name"
+        android:gravity="center"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/secondLine"
+        android:layout_width="150dip"
+        android:layout_height="26dip"
+        android:layout_below="@id/firstLine"
+        android:layout_centerInParent="@id/icon"
+        android:ellipsize="marquee"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="Artists"
+        android:textSize="12sp" />
+
+</RelativeLayout>

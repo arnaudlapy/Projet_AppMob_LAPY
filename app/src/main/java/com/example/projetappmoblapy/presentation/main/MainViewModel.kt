@@ -6,8 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.projetappmoblapy.domain.entity.User
 import com.example.projetappmoblapy.domain.usercase.CreateUserUseCase
 import com.example.projetappmoblapy.domain.usercase.GetUserUseCase
+import com.example.projetappmoblapy.presentation.main.Status.*
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -26,9 +26,13 @@ class MainViewModel(
             var loginStatus: LoginStatus = LoginError
 
             if(user != null){
-                loginStatus = LoginSucces(user.email)
+                loginStatus =
+                    LoginSucces(
+                        user.email
+                    )
             }else{
-                loginStatus = LoginError
+                loginStatus =
+                    LoginError
             }
             withContext(Dispatchers.Main){
                 loginLiveData.value = loginStatus
@@ -49,9 +53,14 @@ class MainViewModel(
             var createStatus: CreateStatus = CreateError
 
             if(user == null){
-                createStatus = CreateSucces(emailUser, password)
+                createStatus =
+                    CreateSucces(
+                        emailUser,
+                        password
+                    )
             }else{
-                createStatus = CreateError
+                createStatus =
+                    CreateError
             }
             withContext(Dispatchers.Main){
                 createLiveData.value = createStatus

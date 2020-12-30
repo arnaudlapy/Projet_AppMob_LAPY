@@ -3,9 +3,10 @@ package com.example.projetappmoblapy.presentation.main
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import androidx.lifecycle.Observer
 import com.example.projetappmoblapy.R
+import com.example.projetappmoblapy.presentation.main.Status.LoginError
+import com.example.projetappmoblapy.presentation.main.Status.LoginSucces
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
