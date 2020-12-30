@@ -17,17 +17,44 @@ class MainViewModel(
     ) : ViewModel() {
 
     val loginLiveData: MutableLiveData<LoginStatus> = MutableLiveData()
+    val createLiveData: MutableLiveData<CreateStatus> = MutableLiveData()
 
     fun onClickedLogin(emailUser: String, password: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val user = getUserUseCase.invoke(emailUser)
-            val loginStatus = if(user != null){
-                LoginSucces(user.email)
+
+            val user:User? = getUserUseCase.invoke(emailUser)
+            var loginStatus: LoginStatus = LoginError
+
+            if(user != null){
+                loginStatus = LoginSucces(user.email)
             }else{
-                LoginError
+                loginStatus = LoginError
             }
             withContext(Dispatchers.Main){
                 loginLiveData.value = loginStatus
+            }
+        }
+    }
+
+    fun onClickedCreate(emailUser: String, password: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            createUserUseCase.invoke(user = User(emailUser, password))
+        }
+    }
+
+    fun onClickedExist(emailUser: String, password: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+
+            val user:User? = getUserUseCase.invoke(emailUser)
+            var createStatus: CreateStatus = CreateError
+
+            if(user == null){
+                createStatus = CreateSucces(emailUser, password)
+            }else{
+                createStatus = CreateError
+            }
+            withContext(Dispatchers.Main){
+                createLiveData.value = createStatus
             }
         }
     }

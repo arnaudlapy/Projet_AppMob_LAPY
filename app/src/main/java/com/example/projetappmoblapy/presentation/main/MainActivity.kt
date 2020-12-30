@@ -1,7 +1,9 @@
 package com.example.projetappmoblapy.presentation.main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import androidx.lifecycle.Observer
 import com.example.projetappmoblapy.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -13,16 +15,20 @@ class MainActivity : AppCompatActivity() {
     val mainViewModel: MainViewModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         mainViewModel.loginLiveData.observe(this, Observer {
             when(it){
-                is LoginSucces -> TODO()
+                is LoginSucces -> {
+                    val intent = Intent(this, ApiActivity::class.java)
+                    startActivity(intent)
+                }
                 LoginError -> {
                     MaterialAlertDialogBuilder(this)
-                            .setTitle("Erreur")
-                            .setMessage("Login ou password inconnu")
+                            .setTitle("Error")
+                            .setMessage("Unknown login or password")
                             .setPositiveButton("Ok!") {dialog, which -> dialog.dismiss()}
                             .show()
                 }
@@ -30,6 +36,10 @@ class MainActivity : AppCompatActivity() {
         })
         login_button.setOnClickListener {
             mainViewModel.onClickedLogin(login_edit.text.toString().trim(), password_edit.text.toString())
+        }
+        create_account_button.setOnClickListener {
+            val intent = Intent(this, CreateAccountActivity::class.java)
+            startActivity(intent)
         }
     }
 }
